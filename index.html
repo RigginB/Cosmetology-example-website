@@ -3,108 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luxury Salon Preview</title>
+<title>Cosmetology Studio</title>
 
 <style>
+:root {
+  --bg-light: #f7f6f4;
+  --bg-dark: #111;
+  --card-bg: #ffffff;
+  --text-dark: #111;
+  --text-light: #f1f1f1;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f7f6f4;
-  color: #111;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
 }
 
-a { text-decoration: none; color: inherit; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
+/* HERO */
 .hero {
-  height: 92vh;
-  background: linear-gradient(
-    rgba(0,0,0,.35),
-    rgba(0,0,0,.35)
-  ),
-  url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1600&q=80")
-  center / cover no-repeat;
+  height: 90vh;
+  background:
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+    url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1600&q=80")
+    center / cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: 0 20px;
 }
 
 .hero h1 {
   color: white;
   font-size: 3rem;
-  letter-spacing: .5px;
+  margin-bottom: 10px;
 }
 
 .hero p {
-  color: #eee;
+  color: #eaeaea;
+  max-width: 520px;
+  margin: 0 auto 25px;
   font-size: 1.1rem;
-  margin-top: 10px;
 }
 
-.cta {
-  margin-top: 25px;
-  padding: 15px 35px;
-  font-size: 1rem;
-  background: #000;
+.button {
+  padding: 14px 34px;
+  background: black;
   color: white;
   border: none;
+  font-size: 1rem;
   cursor: pointer;
 }
 
+/* SECTIONS */
 .section {
   padding: 90px 10%;
 }
 
-.section h2 {
-  font-size: 2rem;
-  margin-bottom: 40px;
-  text-align: center;
+.section.alt {
+  background: white;
 }
 
+.section h2 {
+  text-align: center;
+  font-size: 2.1rem;
+  margin-bottom: 50px;
+}
+
+/* SERVICES */
 .services {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
 }
 
-.card {
-  background: white;
-  padding: 35px;
+.service-card {
+  background: var(--card-bg);
+  padding: 35px 25px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,.06);
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
 }
 
-.card h3 {
+.service-card h3 {
   margin-bottom: 10px;
 }
 
-.social-proof {
-  text-align: center;
-  max-width: 700px;
+.service-card p {
+  font-size: .95rem;
+  color: #555;
+}
+
+/* WHY US */
+.why {
+  max-width: 800px;
   margin: auto;
-  font-size: 1.05rem;
-}
-
-.booking {
-  background: #111;
-  color: white;
   text-align: center;
 }
 
-.booking button {
-  background: white;
-  color: black;
-  padding: 15px 35px;
-  border: none;
-  margin-top: 20px;
-  cursor: pointer;
+.why p {
+  font-size: 1.05rem;
+  margin-bottom: 20px;
 }
 
+/* BOOKING */
+.booking {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  text-align: center;
+}
+
+.booking p {
+  max-width: 500px;
+  margin: 0 auto 25px;
+}
+
+/* FOOTER */
 .footer {
   background: #000;
   color: #aaa;
-  padding: 40px;
   text-align: center;
+  padding: 40px 20px;
   font-size: .9rem;
 }
 </style>
@@ -116,45 +142,71 @@ a { text-decoration: none; color: inherit; }
 <section class="hero">
   <div>
     <h1>Elevated Hair & Beauty</h1>
-    <p>Precision services. Calm experience. Results you trust.</p>
-    <button class="cta">Book Appointment</button>
+    <p>
+      A calm, high-end cosmetology experience focused on precision,
+      quality, and results — never rushed, always intentional.
+    </p>
+    <a href="#booking"><button class="button">Book Appointment</button></a>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section class="section">
+<section class="section alt">
   <h2>Services</h2>
   <div class="services">
-    <div class="card"><h3>Hair</h3><p>Modern cuts & styling</p></div>
-    <div class="card"><h3>Color</h3><p>Custom, dimensional color</p></div>
-    <div class="card"><h3>Extensions</h3><p>Seamless, natural volume</p></div>
-    <div class="card"><h3>Lashes</h3><p>Clean, long-lasting sets</p></div>
-    <div class="card"><h3>Skin</h3><p>Targeted treatments</p></div>
+    <div class="service-card">
+      <h3>Hair</h3>
+      <p>Precision cuts and styling designed for your lifestyle and long-term wear.</p>
+    </div>
+    <div class="service-card">
+      <h3>Color</h3>
+      <p>Custom color work focused on dimension, tone, and hair health.</p>
+    </div>
+    <div class="service-card">
+      <h3>Extensions</h3>
+      <p>Seamless, natural extensions for volume and length without damage.</p>
+    </div>
+    <div class="service-card">
+      <h3>Lashes</h3>
+      <p>Clean, long-lasting sets that enhance without overpowering.</p>
+    </div>
+    <div class="service-card">
+      <h3>Skin</h3>
+      <p>Targeted treatments tailored to your skin’s needs and goals.</p>
+    </div>
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
+<!-- WHY CLIENTS BOOK -->
 <section class="section">
-  <div class="social-proof">
-    <h2>Why Clients Choose Us</h2>
+  <h2>Why Clients Book With Us</h2>
+  <div class="why">
     <p>
-      Clients book with confidence knowing every service is intentional,
-      unrushed, and designed for long-term results — not quick fixes.
+      Clients choose us because every appointment is intentionally scheduled,
+      focused, and never double-booked. This allows for precision, consistency,
+      and results you can trust.
+    </p>
+    <p>
+      From the booking experience to the final result, everything is designed
+      to feel calm, professional, and worth your time.
     </p>
   </div>
 </section>
 
 <!-- BOOKING -->
-<section class="section booking">
-  <h2>Ready to Book?</h2>
-  <p>Limited appointments available each week.</p>
-  <button>Secure Your Spot</button>
+<section id="booking" class="section booking">
+  <h2>Book Your Appointment</h2>
+  <p>
+    Availability is limited to maintain quality and attention to detail.
+    Secure your spot in advance.
+  </p>
+  <button class="button">Proceed to Booking</button>
 </section>
 
 <!-- FOOTER -->
-<div class="footer">
-  © 2026 Salon Preview · All rights reserved
-</div>
+<footer class="footer">
+  © 2026 Cosmetology Studio · All rights reserved
+</footer>
 
 </body>
 </html>
