@@ -1,212 +1,901 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cosmetology Studio</title>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cosmetology Studio — Example</title>
 <style>
-:root {
-  --bg-light: #f7f6f4;
-  --bg-dark: #111;
-  --card-bg: #ffffff;
-  --text-dark: #111;
-  --text-light: #f1f1f1;
-}
+  :root{
+    --bg:#f6f4f0;
+    --ink:#121212;
+    --muted:#5b5b5b;
+    --panel:#ffffff;
+    --line:rgba(0,0,0,.10);
+    --shadow:0 14px 35px rgba(0,0,0,.10);
+    --radius:18px;
+    --radius2:22px;
+  }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg-light);
-  color: var(--text-dark);
-  line-height: 1.6;
-}
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 18px}
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+  /* Top bar */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,244,240,.78);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 18px;
+  }
+  .brand{
+    display:flex; gap:10px; align-items:center;
+    font-weight:700; letter-spacing:.2px;
+  }
+  .dot{width:10px;height:10px;border-radius:50%;background:#111;display:inline-block}
+  .nav{display:flex; gap:18px; align-items:center; color:var(--muted); font-weight:600}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:12px 18px; border-radius:999px; border:1px solid #000;
+    background:#000; color:#fff; font-weight:700; cursor:pointer;
+  }
+  .btn.ghost{background:transparent;color:#000}
+  .btn.small{padding:10px 14px;font-size:.95rem}
 
-/* HERO */
-.hero {
-  height: 90vh;
-  background:
-    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
-    url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1600&q=80")
-    center / cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 20px;
-}
+  /* Hero */
+  .hero{
+    min-height:86vh;
+    display:flex; align-items:center;
+    padding:54px 0 20px;
+  }
+  .heroGrid{
+    display:grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap:26px;
+    align-items:stretch;
+  }
+  @media (max-width: 980px){
+    .heroGrid{grid-template-columns:1fr}
+    .hero{min-height:auto}
+  }
+  .heroLeft{
+    border-radius:var(--radius2);
+    padding:34px;
+    background:
+      linear-gradient(115deg, rgba(0,0,0,.55), rgba(0,0,0,.15)),
+      url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1800&q=80")
+      center/cover no-repeat;
+    box-shadow:var(--shadow);
+    color:#fff;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    min-height:520px;
+  }
+  .kicker{opacity:.92; font-weight:700; letter-spacing:.16em; text-transform:uppercase; font-size:.82rem}
+  h1{margin:12px 0 10px; font-size:3rem; line-height:1.05}
+  @media (max-width: 520px){ h1{font-size:2.35rem} }
+  .sub{max-width:560px; font-size:1.08rem; opacity:.95}
+  .heroCtas{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+  .pillRow{
+    margin-top:18px;
+    display:flex; gap:10px; flex-wrap:wrap;
+    opacity:.98;
+  }
+  .pill{
+    border:1px solid rgba(255,255,255,.26);
+    background:rgba(0,0,0,.18);
+    padding:10px 12px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.92rem;
+  }
 
-.hero h1 {
-  color: white;
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
+  .heroRight{
+    border-radius:var(--radius2);
+    background:var(--panel);
+    box-shadow:var(--shadow);
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    min-height:520px;
+  }
+  .heroRight h2{margin:0;font-size:1.45rem}
+  .heroRight p{margin:0;color:var(--muted)}
+  .miniProof{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:12px;
+    margin-top:4px;
+  }
+  .miniCard{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:14px;
+  }
+  .miniCard b{display:block}
+  .miniCard span{color:var(--muted); font-weight:600; font-size:.95rem}
+  .hr{height:1px;background:var(--line);margin:8px 0}
 
-.hero p {
-  color: #eaeaea;
-  max-width: 520px;
-  margin: 0 auto 25px;
-  font-size: 1.1rem;
-}
+  /* Sections */
+  section{padding:70px 0}
+  .sectionHead{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:18px; margin-bottom:22px;
+  }
+  .sectionHead h2{margin:0;font-size:2.05rem}
+  .sectionHead p{margin:0;color:var(--muted);max-width:560px;font-weight:600}
 
-.button {
-  padding: 14px 34px;
-  background: black;
-  color: white;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-}
+  /* Services */
+  .services{
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap:18px;
+  }
+  @media (max-width: 980px){ .services{grid-template-columns: repeat(2, minmax(0, 1fr));} }
+  @media (max-width: 560px){ .services{grid-template-columns: 1fr;} }
 
-/* SECTIONS */
-.section {
-  padding: 90px 10%;
-}
+  .svc{
+    border-radius:var(--radius2);
+    overflow:hidden;
+    background:var(--panel);
+    box-shadow:var(--shadow);
+    border:1px solid rgba(0,0,0,.06);
+    display:flex;
+    flex-direction:column;
+    min-height:330px;
+    cursor:pointer;
+    transition: transform .14s ease;
+  }
+  .svc:hover{transform: translateY(-2px)}
+  .svcImg{
+    height:190px;
+    background-size:cover;
+    background-position:center;
+    position:relative;
+  }
+  .svcImg:after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55));
+  }
+  .svcTag{
+    position:absolute;
+    left:14px; bottom:14px;
+    z-index:2;
+    color:#fff;
+    font-weight:800;
+    font-size:1.05rem;
+    letter-spacing:.2px;
+  }
+  .svcBody{padding:16px 16px 18px}
+  .svcBody p{margin:8px 0 0; color:var(--muted); font-weight:600}
+  .svcMeta{
+    margin-top:12px;
+    display:flex; gap:10px; flex-wrap:wrap;
+    color:#222;
+    font-weight:800;
+  }
+  .chip{
+    background:#f0ede7;
+    border:1px solid rgba(0,0,0,.08);
+    padding:8px 10px;
+    border-radius:999px;
+    font-size:.92rem;
+  }
+  .svcSelected{
+    outline:3px solid #000;
+    outline-offset:2px;
+  }
 
-.section.alt {
-  background: white;
-}
+  /* Why book */
+  .whyGrid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:18px;
+  }
+  @media (max-width: 900px){ .whyGrid{grid-template-columns:1fr} }
+  .whyBox{
+    background:var(--panel);
+    border-radius:var(--radius2);
+    box-shadow:var(--shadow);
+    padding:22px;
+    border:1px solid rgba(0,0,0,.06);
+  }
+  .whyBox h3{margin:0 0 8px}
+  .whyBox p{margin:0;color:var(--muted);font-weight:600}
 
-.section h2 {
-  text-align: center;
-  font-size: 2.1rem;
-  margin-bottom: 50px;
-}
+  /* Booking */
+  .bookingShell{
+    background:#111;
+    color:#f3f3f3;
+    border-radius:26px;
+    padding:22px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(255,255,255,.08);
+  }
+  .bookingGrid{
+    display:grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap:18px;
+    margin-top:12px;
+  }
+  @media (max-width: 980px){ .bookingGrid{grid-template-columns:1fr} }
+  .panel{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:22px;
+    padding:16px;
+  }
+  .panel h3{margin:0 0 12px}
+  .small{color:rgba(255,255,255,.78);font-weight:600;font-size:.95rem}
+  .calendar{
+    display:grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap:8px;
+  }
+  .dow{opacity:.7;font-weight:800;font-size:.82rem;text-align:center}
+  .day{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:14px;
+    padding:10px 0;
+    text-align:center;
+    cursor:pointer;
+    user-select:none;
+    font-weight:800;
+  }
+  .day.muted{opacity:.35;cursor:not-allowed}
+  .day.sel{background:#fff;color:#000;border-color:#fff}
+  .times{
+    margin-top:12px;
+    display:grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap:10px;
+  }
+  @media (max-width: 520px){ .times{grid-template-columns: repeat(2, minmax(0, 1fr));} }
+  .timeBtn{
+    border-radius:999px;
+    padding:10px 10px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.14);
+    background:rgba(255,255,255,.06);
+    cursor:pointer;
+    font-weight:800;
+  }
+  .timeBtn.sel{background:#fff;color:#000;border-color:#fff}
+  .timeBtn.blocked{opacity:.35;cursor:not-allowed}
 
-/* SERVICES */
-.services {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 30px;
-}
+  .formRow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media (max-width: 520px){ .formRow{grid-template-columns:1fr} }
+  input, textarea, select{
+    width:100%;
+    padding:12px 12px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.06);
+    color:#fff;
+    outline:none;
+    font-weight:700;
+  }
+  textarea{min-height:92px;resize:vertical}
+  .submit{
+    width:100%;
+    margin-top:10px;
+    padding:12px 14px;
+    border-radius:999px;
+    border:1px solid #fff;
+    background:#fff;
+    color:#000;
+    font-weight:900;
+    cursor:pointer;
+  }
+  .note{
+    margin-top:10px;
+    color:rgba(255,255,255,.75);
+    font-weight:600;
+    font-size:.92rem;
+  }
 
-.service-card {
-  background: var(--card-bg);
-  padding: 35px 25px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,.08);
-}
-
-.service-card h3 {
-  margin-bottom: 10px;
-}
-
-.service-card p {
-  font-size: .95rem;
-  color: #555;
-}
-
-/* WHY US */
-.why {
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-}
-
-.why p {
-  font-size: 1.05rem;
-  margin-bottom: 20px;
-}
-
-/* BOOKING */
-.booking {
-  background: var(--bg-dark);
-  color: var(--text-light);
-  text-align: center;
-}
-
-.booking p {
-  max-width: 500px;
-  margin: 0 auto 25px;
-}
-
-/* FOOTER */
-.footer {
-  background: #000;
-  color: #aaa;
-  text-align: center;
-  padding: 40px 20px;
-  font-size: .9rem;
-}
+  /* Admin */
+  .adminBar{
+    display:none;
+    margin:18px 0 0;
+    padding:14px;
+    border-radius:18px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+  }
+  .adminBar.show{display:block}
+  .adminGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width: 900px){ .adminGrid{grid-template-columns:1fr} }
+  .list{
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.12);
+    padding:12px;
+    min-height:120px;
+  }
+  .item{
+    padding:10px;
+    border-radius:14px;
+    background:rgba(0,0,0,.18);
+    border:1px solid rgba(255,255,255,.10);
+    margin-bottom:10px;
+  }
+  .item b{display:block}
+  .actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+  .aBtn{
+    padding:9px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.06);color:#fff;font-weight:900;cursor:pointer;
+  }
+  .aBtn.ok{background:#fff;color:#000;border-color:#fff}
+  .aBtn.no{border-color:rgba(255,255,255,.28)}
+  .footer{
+    padding:40px 0 60px;
+    color:rgba(0,0,0,.55);
+    font-weight:700;
+    text-align:center;
+  }
 </style>
 </head>
-
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <h1>Elevated Hair & Beauty</h1>
-    <p>
-      A calm, high-end cosmetology experience focused on precision,
-      quality, and results — never rushed, always intentional.
-    </p>
-    <a href="#booking"><button class="button">Book Appointment</button></a>
+<!--
+Owner/Admin view:
+Open your published site with ?admin=1
+Example:
+https://rigginb.github.io/cosmetology-example-website/?admin=1
+-->
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="dot"></span> Cosmetology Studio <span style="opacity:.55;font-weight:800">• example</span></div>
+    <nav class="nav">
+      <a href="#services">Services</a>
+      <a href="#why">Why book</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#schedule" class="btn small">Book</a>
+    </nav>
   </div>
-</section>
+</header>
 
-<!-- SERVICES -->
-<section class="section alt">
-  <h2>Services</h2>
-  <div class="services">
-    <div class="service-card">
-      <h3>Hair</h3>
-      <p>Precision cuts and styling designed for your lifestyle and long-term wear.</p>
-    </div>
-    <div class="service-card">
-      <h3>Color</h3>
-      <p>Custom color work focused on dimension, tone, and hair health.</p>
-    </div>
-    <div class="service-card">
-      <h3>Extensions</h3>
-      <p>Seamless, natural extensions for volume and length without damage.</p>
-    </div>
-    <div class="service-card">
-      <h3>Lashes</h3>
-      <p>Clean, long-lasting sets that enhance without overpowering.</p>
-    </div>
-    <div class="service-card">
-      <h3>Skin</h3>
-      <p>Targeted treatments tailored to your skin’s needs and goals.</p>
-    </div>
-  </div>
-</section>
+<main class="wrap">
+  <section class="hero">
+    <div class="heroGrid">
+      <div class="heroLeft">
+        <div class="kicker">Calm, premium, appointment-only</div>
+        <h1>Book once. Love it every time.</h1>
+        <div class="sub">
+          Precision work, intentional timing, and a smooth booking experience — so you know exactly what you’re getting before you ever sit down.
+        </div>
+        <div class="heroCtas">
+          <a href="#schedule" class="btn">Book appointment</a>
+          <a href="#services" class="btn ghost">View services</a>
+        </div>
+        <div class="pillRow">
+          <span class="pill">No double-booking</span>
+          <span class="pill">Quality-first timing</span>
+          <span class="pill">Clear policies</span>
+        </div>
+      </div>
 
-<!-- WHY CLIENTS BOOK -->
-<section class="section">
-  <h2>Why Clients Book With Us</h2>
-  <div class="why">
-    <p>
-      Clients choose us because every appointment is intentionally scheduled,
-      focused, and never double-booked. This allows for precision, consistency,
-      and results you can trust.
-    </p>
-    <p>
-      From the booking experience to the final result, everything is designed
-      to feel calm, professional, and worth your time.
-    </p>
-  </div>
-</section>
+      <div class="heroRight">
+        <h2>What this example includes</h2>
+        <p>Service cards (with images), “Why book us,” a scheduling calendar, and an owner panel that can accept/decline requests and prevent overlap (demo).</p>
+        <div class="hr"></div>
+        <div class="miniProof">
+          <div class="miniCard"><b>Booking-first</b><span>One main CTA, repeated</span></div>
+          <div class="miniCard"><b>Mobile clean</b><span>2–3 cards per row</span></div>
+          <div class="miniCard"><b>Calendar demo</b><span>Select day + time</span></div>
+          <div class="miniCard"><b>Owner controls</b><span>Approve / decline</span></div>
+        </div>
+        <div class="hr"></div>
+        <a href="#schedule" class="btn">Schedule me</a>
+        <p style="margin-top:10px" class="small">Tip: pick a service card below first — it pre-fills the booking.</p>
+      </div>
+    </div>
+  </section>
 
-<!-- BOOKING -->
-<section id="booking" class="section booking">
-  <h2>Book Your Appointment</h2>
-  <p>
-    Availability is limited to maintain quality and attention to detail.
-    Secure your spot in advance.
-  </p>
-  <button class="button">Proceed to Booking</button>
-</section>
+  <section id="services">
+    <div class="sectionHead">
+      <h2>Services</h2>
+      <p>Tap a service to select it for booking. Layout stays clean: 3 per row desktop, 2 per row tablet, 1 per row mobile.</p>
+    </div>
 
-<!-- FOOTER -->
-<footer class="footer">
-  © 2026 Cosmetology Studio · All rights reserved
-</footer>
+    <div class="services" id="servicesGrid"></div>
+  </section>
 
+  <section id="why">
+    <div class="sectionHead">
+      <h2>Why clients book here</h2>
+      <p>This is the “make them want to book” section: clarity, trust, and zero friction.</p>
+    </div>
+
+    <div class="whyGrid">
+      <div class="whyBox">
+        <h3>Quality timing, not rushed</h3>
+        <p>Appointments are intentionally spaced so the service is precise and consistent — that’s how you reduce “it was fine” outcomes and get “this is perfect” outcomes.</p>
+      </div>
+      <div class="whyBox">
+        <h3>Clear expectations up front</h3>
+        <p>Services, timing, and what to expect are explained before booking, which reduces cancellations, avoids mismatched requests, and keeps the experience calm.</p>
+      </div>
+      <div class="whyBox">
+        <h3>Confidence from the first click</h3>
+        <p>The booking flow is built to feel premium: pick a service, choose a time, enter details, and you’re done — no back-and-forth.</p>
+      </div>
+      <div class="whyBox">
+        <h3>Consistency over gimmicks</h3>
+        <p>No clutter, no discounts, no chaos. The brand is “book and trust,” which is what higher-quality clients respond to.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <div class="bookingShell">
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-end">
+        <div>
+          <div class="kicker" style="opacity:.85">Schedule me</div>
+          <h2 style="margin:10px 0 0;font-size:2.1rem">Pick a date, pick a time, request a booking</h2>
+          <div class="small" style="margin-top:8px">Demo booking logic: requests go to “Pending.” Owner approves/declines in admin view.</div>
+        </div>
+        <button class="btn small ghost" id="clearDemo" style="border-color:#fff;color:#fff">Clear demo bookings</button>
+      </div>
+
+      <div class="bookingGrid">
+        <div class="panel">
+          <h3>1) Select day</h3>
+          <div class="calendar" id="calendar">
+            <!-- injected -->
+          </div>
+
+          <div style="display:flex;justify-content:space-between;gap:10px;margin-top:14px;flex-wrap:wrap">
+            <button class="btn small ghost" id="prevMonth" style="border-color:#fff;color:#fff">Prev</button>
+            <div class="small" id="monthLabel" style="font-weight:900"></div>
+            <button class="btn small ghost" id="nextMonth" style="border-color:#fff;color:#fff">Next</button>
+          </div>
+
+          <div style="margin-top:18px">
+            <h3 style="margin:0 0 10px">2) Select time</h3>
+            <div class="times" id="times"></div>
+            <div class="note" id="slotNote">Select a date to see available times.</div>
+          </div>
+
+          <div class="adminBar" id="adminBar">
+            <b>Owner mode enabled</b>
+            <div class="small" style="margin-top:6px">You can accept/decline requests below. Approved bookings block overlapping times.</div>
+
+            <div class="adminGrid" style="margin-top:12px">
+              <div class="list">
+                <b>Pending requests</b>
+                <div id="pendingList" style="margin-top:10px"></div>
+              </div>
+              <div class="list">
+                <b>Approved bookings</b>
+                <div id="approvedList" style="margin-top:10px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>3) Booking details</h3>
+
+          <div class="small" style="margin-bottom:10px">
+            Selected: <b id="selService">None</b> • Date: <b id="selDate">—</b> • Time: <b id="selTime">—</b>
+          </div>
+
+          <div class="formRow">
+            <input id="name" placeholder="Full name" />
+            <input id="phone" placeholder="Phone number" />
+          </div>
+          <div style="height:10px"></div>
+          <input id="email" placeholder="Email (optional)" />
+          <div style="height:10px"></div>
+          <textarea id="notes" placeholder="Anything we should know? (hair goals, allergies, inspo, etc.)"></textarea>
+
+          <button class="submit" id="submit">Request booking</button>
+
+          <div class="note" id="confirm"></div>
+          <div class="note" style="margin-top:12px">
+            Real-world note: SMS confirmations + owner acceptance require a booking platform or a backend (this demo stores requests locally in your browser).
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">© 2026 Cosmetology Studio — example site</div>
+</main>
+
+<script>
+  // ===== Services (edit later with real info) =====
+  const SERVICES = [
+    {
+      id: "hair",
+      name: "Hair",
+      desc: "Precision cuts and styling that grow out clean and look intentional for weeks.",
+      duration: 60,
+      starting: "$75",
+      img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1600&q=80"
+    },
+    {
+      id: "color",
+      name: "Color",
+      desc: "Dimensional color and tone correction with a hair-health-first process.",
+      duration: 120,
+      starting: "$140",
+      img: "https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=1600&q=80"
+    },
+    {
+      id: "extensions",
+      name: "Extensions",
+      desc: "Seamless volume + length with placement that stays natural in real life.",
+      duration: 150,
+      starting: "$220",
+      img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1600&q=80"
+    },
+    {
+      id: "lashes",
+      name: "Lashes",
+      desc: "Clean sets that enhance your face without looking heavy or overdone.",
+      duration: 90,
+      starting: "$95",
+      img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1600&q=80"
+    },
+    {
+      id: "facials",
+      name: "Facials",
+      desc: "Targeted treatments for texture, glow, and calm skin — not guesswork.",
+      duration: 60,
+      starting: "$90",
+      img: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1600&q=80"
+    }
+  ];
+
+  // ===== Booking demo storage =====
+  const STORE_KEY = "cosmo_demo_bookings_v1";
+  function loadStore(){
+    try{
+      const raw = localStorage.getItem(STORE_KEY);
+      return raw ? JSON.parse(raw) : { pending: [], approved: [] };
+    }catch(e){
+      return { pending: [], approved: [] };
+    }
+  }
+  function saveStore(data){
+    localStorage.setItem(STORE_KEY, JSON.stringify(data));
+  }
+  function clearStore(){
+    localStorage.removeItem(STORE_KEY);
+  }
+
+  // ===== State =====
+  let selectedService = null;
+  let viewDate = new Date(); // month being viewed
+  let selectedDay = null;     // YYYY-MM-DD
+  let selectedTime = null;    // HH:MM
+
+  const ADMIN = new URLSearchParams(location.search).get("admin") === "1";
+
+  // ===== Build services grid =====
+  const servicesGrid = document.getElementById("servicesGrid");
+  SERVICES.forEach(s => {
+    const el = document.createElement("div");
+    el.className = "svc";
+    el.dataset.serviceId = s.id;
+    el.innerHTML = `
+      <div class="svcImg" style="background-image:url('${s.img}')">
+        <div class="svcTag">${s.name}</div>
+      </div>
+      <div class="svcBody">
+        <p>${s.desc}</p>
+        <div class="svcMeta">
+          <span class="chip">${s.duration} min</span>
+          <span class="chip">From ${s.starting}</span>
+        </div>
+      </div>
+    `;
+    el.addEventListener("click", () => selectService(s.id));
+    servicesGrid.appendChild(el);
+  });
+
+  function selectService(serviceId){
+    selectedService = SERVICES.find(s => s.id === serviceId) || null;
+    document.getElementById("selService").textContent = selectedService ? selectedService.name : "None";
+    document.querySelectorAll(".svc").forEach(card=>{
+      card.classList.toggle("svcSelected", card.dataset.serviceId === serviceId);
+    });
+    // Soft scroll to schedule for a booking-driven feel
+    document.getElementById("schedule").scrollIntoView({behavior:"smooth"});
+  }
+
+  // ===== Calendar + times =====
+  const calendarEl = document.getElementById("calendar");
+  const monthLabel = document.getElementById("monthLabel");
+  const timesEl = document.getElementById("times");
+  const slotNote = document.getElementById("slotNote");
+
+  const TIMES = ["10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"];
+
+  function ymd(d){
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,"0");
+    const day = String(d.getDate()).padStart(2,"0");
+    return `${y}-${m}-${day}`;
+  }
+
+  function renderCalendar(){
+    calendarEl.innerHTML = "";
+
+    // DOW header
+    ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(x=>{
+      const d = document.createElement("div");
+      d.className = "dow";
+      d.textContent = x;
+      calendarEl.appendChild(d);
+    });
+
+    const year = viewDate.getFullYear();
+    const month = viewDate.getMonth();
+
+    monthLabel.textContent = viewDate.toLocaleString(undefined, {month:"long", year:"numeric"});
+
+    const first = new Date(year, month, 1);
+    const startDow = first.getDay();
+    const daysInMonth = new Date(year, month+1, 0).getDate();
+
+    // pad blanks
+    for(let i=0;i<startDow;i++){
+      const blank = document.createElement("div");
+      blank.className = "day muted";
+      blank.textContent = "";
+      calendarEl.appendChild(blank);
+    }
+
+    const today = new Date();
+    const todayYMD = ymd(today);
+
+    for(let day=1; day<=daysInMonth; day++){
+      const d = new Date(year, month, day);
+      const key = ymd(d);
+      const isPast = key < todayYMD;
+
+      const cell = document.createElement("div");
+      cell.className = "day" + (isPast ? " muted" : "") + (key === selectedDay ? " sel" : "");
+      cell.textContent = day;
+
+      if(!isPast){
+        cell.addEventListener("click", ()=>{
+          selectedDay = key;
+          selectedTime = null;
+          document.getElementById("selDate").textContent = key;
+          document.getElementById("selTime").textContent = "—";
+          renderCalendar();
+          renderTimes();
+          document.getElementById("confirm").textContent = "";
+        });
+      }
+
+      calendarEl.appendChild(cell);
+    }
+
+    renderTimes();
+    renderAdminLists();
+  }
+
+  function slotBlocked(dayKey, time){
+    const store = loadStore();
+    // Approved bookings block overlap.
+    return store.approved.some(b => b.day === dayKey && b.time === time);
+  }
+
+  function renderTimes(){
+    timesEl.innerHTML = "";
+    if(!selectedDay){
+      slotNote.textContent = "Select a date to see available times.";
+      return;
+    }
+
+    slotNote.textContent = "Select a time. Approved bookings are blocked.";
+    TIMES.forEach(t=>{
+      const blocked = slotBlocked(selectedDay, t);
+      const b = document.createElement("div");
+      b.className = "timeBtn" + (blocked ? " blocked" : "") + (t === selectedTime ? " sel" : "");
+      b.textContent = t;
+      if(!blocked){
+        b.addEventListener("click", ()=>{
+          selectedTime = t;
+          document.getElementById("selTime").textContent = t;
+          document.getElementById("confirm").textContent = "";
+          renderTimes();
+        });
+      }
+      timesEl.appendChild(b);
+    });
+  }
+
+  document.getElementById("prevMonth").addEventListener("click", ()=>{
+    viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth()-1, 1);
+    renderCalendar();
+  });
+  document.getElementById("nextMonth").addEventListener("click", ()=>{
+    viewDate = new Date(viewDate.getFullYear(), viewDate.getMonth()+1, 1);
+    renderCalendar();
+  });
+
+  // ===== Submit booking (demo) =====
+  document.getElementById("submit").addEventListener("click", ()=>{
+    const confirmEl = document.getElementById("confirm");
+
+    if(!selectedService){
+      confirmEl.textContent = "Select a service first (tap a service card).";
+      return;
+    }
+    if(!selectedDay || !selectedTime){
+      confirmEl.textContent = "Select a date and time first.";
+      return;
+    }
+    if(slotBlocked(selectedDay, selectedTime)){
+      confirmEl.textContent = "That time is already booked. Pick another slot.";
+      return;
+    }
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const notes = document.getElementById("notes").value.trim();
+
+    if(!name || !phone){
+      confirmEl.textContent = "Enter your name and phone number to request the booking.";
+      return;
+    }
+
+    const store = loadStore();
+    const req = {
+      id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+      createdAt: new Date().toISOString(),
+      serviceId: selectedService.id,
+      serviceName: selectedService.name,
+      duration: selectedService.duration,
+      day: selectedDay,
+      time: selectedTime,
+      name, phone, email, notes
+    };
+
+    // Put into pending (owner approves in admin mode)
+    store.pending.unshift(req);
+    saveStore(store);
+
+    confirmEl.textContent =
+      "Requested. In a real setup, the owner would confirm by text/email. For this demo, open ?admin=1 to approve/decline.";
+
+    // Clear form fields (demo feel)
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("notes").value = "";
+
+    renderAdminLists();
+  });
+
+  // ===== Admin controls =====
+  const adminBar = document.getElementById("adminBar");
+  if(ADMIN) adminBar.classList.add("show");
+
+  function renderAdminLists(){
+    if(!ADMIN) return;
+
+    const store = loadStore();
+    const pendingList = document.getElementById("pendingList");
+    const approvedList = document.getElementById("approvedList");
+    pendingList.innerHTML = "";
+    approvedList.innerHTML = "";
+
+    if(store.pending.length === 0){
+      pendingList.innerHTML = `<div class="small">No pending requests yet.</div>`;
+    }else{
+      store.pending.forEach(req=>{
+        const item = document.createElement("div");
+        item.className = "item";
+        item.innerHTML = `
+          <b>${req.day} • ${req.time} — ${req.serviceName}</b>
+          <div class="small">${req.name} • ${req.phone}${req.email ? " • " + req.email : ""}</div>
+          ${req.notes ? `<div class="small" style="margin-top:6px;opacity:.9">Notes: ${escapeHtml(req.notes)}</div>` : ""}
+          <div class="actions">
+            <button class="aBtn ok">Accept</button>
+            <button class="aBtn no">Decline</button>
+          </div>
+        `;
+        const [acceptBtn, declineBtn] = item.querySelectorAll("button");
+        acceptBtn.addEventListener("click", ()=> acceptReq(req.id));
+        declineBtn.addEventListener("click", ()=> declineReq(req.id));
+        pendingList.appendChild(item);
+      });
+    }
+
+    if(store.approved.length === 0){
+      approvedList.innerHTML = `<div class="small">No approved bookings yet.</div>`;
+    }else{
+      store.approved.forEach(req=>{
+        const item = document.createElement("div");
+        item.className = "item";
+        item.innerHTML = `
+          <b>${req.day} • ${req.time} — ${req.serviceName}</b>
+          <div class="small">${req.name} • ${req.phone}</div>
+          <div class="actions">
+            <button class="aBtn no">Cancel booking</button>
+          </div>
+        `;
+        item.querySelector("button").addEventListener("click", ()=> cancelApproved(req.id));
+        approvedList.appendChild(item);
+      });
+    }
+
+    // refresh blocked slots when approvals change
+    renderTimes();
+  }
+
+  function acceptReq(id){
+    const store = loadStore();
+    const idx = store.pending.findIndex(x=>x.id===id);
+    if(idx === -1) return;
+    const req = store.pending[idx];
+
+    // Prevent overlap: only accept if slot not already booked
+    if(store.approved.some(b => b.day === req.day && b.time === req.time)){
+      alert("That time is already approved for someone else.");
+      return;
+    }
+
+    store.pending.splice(idx,1);
+    store.approved.unshift(req);
+    saveStore(store);
+    renderAdminLists();
+  }
+
+  function declineReq(id){
+    const store = loadStore();
+    store.pending = store.pending.filter(x=>x.id!==id);
+    saveStore(store);
+    renderAdminLists();
+  }
+
+  function cancelApproved(id){
+    const store = loadStore();
+    store.approved = store.approved.filter(x=>x.id!==id);
+    saveStore(store);
+    renderAdminLists();
+  }
+
+  document.getElementById("clearDemo").addEventListener("click", ()=>{
+    clearStore();
+    renderAdminLists();
+    renderTimes();
+    document.getElementById("confirm").textContent = "Demo bookings cleared.";
+  });
+
+  function escapeHtml(str){
+    return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  // ===== Init =====
+  // Preselect first service for a “ready to book” feel (still user can change)
+  selectService(SERVICES[0].id);
+  document.getElementById("selDate").textContent = "—";
+  document.getElementById("selTime").textContent = "—";
+  renderCalendar();
+</script>
 </body>
 </html>
