@@ -4,56 +4,66 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Hair by Sierra</title>
+
 <style>
   :root{
-    --bg:#fbf7f9;
-    --ink:#151515;
-    --muted:#5b5b5b;
-    --panel:#ffffff;
-    --line:rgba(0,0,0,.10);
-    --shadow:0 16px 40px rgba(0,0,0,.10);
+    /* Baby pink on black */
+    --bg:#0b0b0e;
+    --panel:#111116;
+    --panel2:#15151c;
+    --ink:#ffffff;
+    --muted:rgba(255,255,255,.74);
+    --line:rgba(255,255,255,.10);
+    --shadow:0 18px 44px rgba(0,0,0,.55);
+
+    --pink:#ff8fc6;        /* baby pink accent */
+    --pink2:#ffd6ea;       /* very light pink */
+    --pinkGlow:rgba(255,143,198,.22);
+
+    --good:#2fd07a;
+    --bad:#ff6a7a;
+
     --r:18px;
     --r2:26px;
-
-    /* Pink system (light + accent) */
-    --pink:#ff4fa3;
-    --pink2:#ffd1e6;
-    --pink3:#fff0f7;
-
-    --good:#167a40;
-    --bad:#b51b1b;
   }
 
   *{box-sizing:border-box}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .track,.reviewTrack{animation:none !important;}
+  }
+
   body{
     margin:0;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Arial,sans-serif;
-    background:radial-gradient(1200px 700px at 10% 0%, var(--pink3), transparent 60%),
-               radial-gradient(1200px 700px at 90% 10%, var(--pink2), transparent 55%),
-               var(--bg);
+    background:
+      radial-gradient(1200px 700px at 15% 0%, rgba(255,143,198,.10), transparent 60%),
+      radial-gradient(1000px 600px at 95% 5%, rgba(255,214,234,.08), transparent 55%),
+      var(--bg);
     color:var(--ink);
     line-height:1.55;
   }
+
   a{color:inherit;text-decoration:none}
   .wrap{max-width:1180px;margin:0 auto;padding:0 18px}
 
   /* Top bar */
   .topbar{
     position:sticky; top:0; z-index:50;
-    background:rgba(251,247,249,.82);
-    backdrop-filter: blur(10px);
+    background:rgba(11,11,14,.78);
+    backdrop-filter: blur(12px);
     border-bottom:1px solid var(--line);
   }
   .topbar .wrap{
     display:flex; align-items:center; justify-content:space-between;
-    padding:14px 18px;
-    gap:12px;
+    padding:14px 18px; gap:12px;
   }
   .brand{
     display:flex; align-items:center; gap:10px;
     font-weight:950; letter-spacing:.2px;
   }
-  .dot{width:10px;height:10px;border-radius:50%;background:var(--pink);display:inline-block}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--pink);display:inline-block; box-shadow:0 0 0 6px var(--pinkGlow)}
   .nav{
     display:flex; align-items:center; gap:14px;
     color:var(--muted);
@@ -61,35 +71,48 @@
     flex-wrap:wrap;
     justify-content:flex-end;
   }
+
   .btn{
     display:inline-flex; align-items:center; justify-content:center;
     padding:12px 18px; border-radius:999px;
     border:1px solid var(--pink);
     background:var(--pink);
-    color:#fff;
+    color:#110812;
     font-weight:950; cursor:pointer;
-    box-shadow:0 12px 26px rgba(255,79,163,.22);
+    box-shadow:0 14px 30px var(--pinkGlow);
   }
   .btn.ghost{
     background:transparent;
     color:var(--ink);
-    border-color:rgba(0,0,0,.16);
+    border-color:rgba(255,255,255,.18);
     box-shadow:none;
   }
   .btn.small{padding:10px 14px;font-size:.95rem}
+
   .pill{
     font-size:.9rem;
     font-weight:950;
     padding:8px 10px;
     border-radius:999px;
-    border:1px solid rgba(0,0,0,.10);
-    background:#fff;
+    border:1px solid rgba(255,255,255,.16);
+    background:rgba(255,255,255,.04);
     white-space:nowrap;
+    color:rgba(255,255,255,.86);
   }
   .pill.pink{
-    border-color:rgba(255,79,163,.35);
-    background:linear-gradient(180deg, #fff, var(--pink3));
+    border-color:rgba(255,143,198,.35);
+    background:linear-gradient(180deg, rgba(255,143,198,.14), rgba(255,255,255,.03));
+    color:rgba(255,255,255,.92);
   }
+
+  /* Sections */
+  section{padding:62px 0}
+  .sectionHead{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:18px; margin-bottom:16px;
+  }
+  .sectionHead h2{margin:0;font-size:2.05rem}
+  .sectionHead p{margin:0;color:var(--muted);max-width:720px;font-weight:750}
 
   /* Hero */
   .hero{padding:44px 0 10px}
@@ -105,39 +128,46 @@
     border-radius:var(--r2);
     padding:34px;
     background:
-      linear-gradient(115deg, rgba(0,0,0,.55), rgba(0,0,0,.12)),
-      url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1800&q=80")
+      linear-gradient(115deg, rgba(0,0,0,.72), rgba(0,0,0,.18)),
+      url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=2000&q=80")
       center/cover no-repeat;
     box-shadow:var(--shadow);
-    color:#fff;
     min-height:520px;
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
     position:relative;
     overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
   }
-  .kicker{opacity:.92; font-weight:950; letter-spacing:.18em; text-transform:uppercase; font-size:.82rem}
+
+  .kicker{
+    opacity:.92;
+    font-weight:950;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:.82rem
+  }
   h1{margin:12px 0 10px; font-size:3.05rem; line-height:1.05}
   @media (max-width: 520px){ h1{font-size:2.35rem} }
-  .sub{max-width:650px; font-size:1.08rem; opacity:.96}
+  .sub{max-width:680px; font-size:1.08rem; color:rgba(255,255,255,.90); font-weight:700}
   .heroCtas{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
-  .heroLeft .btn.ghost{border-color:rgba(255,255,255,.35);color:#fff}
 
   .heroRight{
     border-radius:var(--r2);
-    background:rgba(255,255,255,.92);
+    background:linear-gradient(180deg, rgba(255,143,198,.10), rgba(255,255,255,.03));
     box-shadow:var(--shadow);
     padding:22px;
     min-height:520px;
-    border:1px solid rgba(0,0,0,.06);
+    border:1px solid rgba(255,255,255,.10);
     display:flex;
     flex-direction:column;
     gap:14px;
   }
   .heroRight h2{margin:0;font-size:1.45rem}
-  .heroRight p{margin:0;color:var(--muted);font-weight:700}
-  .hr{height:1px;background:rgba(0,0,0,.10);margin:6px 0}
+  .heroRight p{margin:0;color:var(--muted);font-weight:720}
+  .hr{height:1px;background:rgba(255,255,255,.12);margin:6px 0}
+
   .contactRow{
     display:grid;
     grid-template-columns: 1fr 1fr;
@@ -145,22 +175,13 @@
   }
   @media (max-width: 520px){ .contactRow{grid-template-columns:1fr} }
   .contactCard{
-    border:1px solid rgba(0,0,0,.10);
+    border:1px solid rgba(255,255,255,.12);
     border-radius:16px;
     padding:12px;
-    background:#fff;
+    background:rgba(0,0,0,.20);
   }
   .contactCard b{display:block}
-  .contactCard span{color:var(--muted);font-weight:800}
-
-  /* Sections */
-  section{padding:62px 0}
-  .sectionHead{
-    display:flex; align-items:flex-end; justify-content:space-between;
-    gap:18px; margin-bottom:16px;
-  }
-  .sectionHead h2{margin:0;font-size:2.05rem}
-  .sectionHead p{margin:0;color:var(--muted);max-width:680px;font-weight:750}
+  .contactCard span{color:rgba(255,255,255,.78);font-weight:850}
 
   /* Top services cards */
   .cards{
@@ -174,15 +195,14 @@
   .card{
     border-radius:var(--r2);
     overflow:hidden;
-    background:rgba(255,255,255,.94);
+    background:rgba(255,255,255,.03);
     box-shadow:var(--shadow);
-    border:1px solid rgba(0,0,0,.06);
+    border:1px solid rgba(255,255,255,.10);
     cursor:pointer;
     transition: transform .14s ease, outline-color .14s ease;
     min-height:330px;
     display:flex;
     flex-direction:column;
-    position:relative;
   }
   .card:hover{transform: translateY(-2px)}
   .card.sel{outline:3px solid var(--pink); outline-offset:2px}
@@ -196,7 +216,7 @@
   .cardImg:after{
     content:"";
     position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.58));
+    background:linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.70));
   }
   .cardTag{
     position:absolute; left:14px; bottom:14px;
@@ -206,22 +226,23 @@
     letter-spacing:.2px;
   }
   .cardBody{padding:14px 16px 18px}
-  .cardBody p{margin:8px 0 0; color:var(--muted); font-weight:720}
+  .cardBody p{margin:8px 0 0; color:rgba(255,255,255,.78); font-weight:730}
   .meta{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;font-weight:950}
   .chip{
-    background:linear-gradient(180deg, #fff, var(--pink3));
-    border:1px solid rgba(255,79,163,.20);
+    background:rgba(255,143,198,.12);
+    border:1px solid rgba(255,143,198,.28);
     padding:8px 10px;
     border-radius:999px;
     font-size:.92rem;
+    color:rgba(255,255,255,.92);
   }
 
-  /* Slider (why clients book) */
+  /* Slider (recent work) */
   .sliderShell{
     border-radius:var(--r2);
-    background:rgba(255,255,255,.92);
+    background:rgba(255,255,255,.03);
     box-shadow:var(--shadow);
-    border:1px solid rgba(0,0,0,.06);
+    border:1px solid rgba(255,255,255,.10);
     overflow:hidden;
   }
   .sliderTop{
@@ -231,17 +252,18 @@
     align-items:flex-end;
     gap:12px;
     flex-wrap:wrap;
-    border-bottom:1px solid rgba(0,0,0,.08);
+    border-bottom:1px solid rgba(255,255,255,.10);
   }
   .sliderTop h3{margin:0;font-size:1.35rem}
-  .sliderTop span{color:var(--muted);font-weight:750}
+  .sliderTop span{color:var(--muted);font-weight:780}
+
   .marquee{
     display:flex;
     gap:12px;
     padding:16px;
     overflow:hidden;
     position:relative;
-    background:linear-gradient(180deg, #fff, var(--pink3));
+    background:linear-gradient(180deg, rgba(255,143,198,.10), rgba(255,255,255,.02));
   }
   .track{
     display:flex;
@@ -259,16 +281,12 @@
     height:170px;
     border-radius:18px;
     overflow:hidden;
-    border:1px solid rgba(0,0,0,.10);
-    background:#eee;
+    border:1px solid rgba(255,255,255,.12);
+    background:#101016;
     flex:0 0 auto;
     position:relative;
   }
-  .shot img{
-    width:100%; height:100%;
-    object-fit:cover;
-    display:block;
-  }
+  .shot img{width:100%; height:100%; object-fit:cover; display:block}
   .shotLabel{
     position:absolute;
     left:10px; bottom:10px;
@@ -278,14 +296,15 @@
     border-radius:999px;
     font-weight:950;
     font-size:.9rem;
+    border:1px solid rgba(255,255,255,.10);
   }
 
   /* Reviews */
   .reviews{
     border-radius:var(--r2);
-    background:rgba(255,255,255,.92);
+    background:rgba(255,255,255,.03);
     box-shadow:var(--shadow);
-    border:1px solid rgba(0,0,0,.06);
+    border:1px solid rgba(255,255,255,.10);
     overflow:hidden;
   }
   .reviewsTop{
@@ -295,16 +314,17 @@
     align-items:flex-end;
     gap:12px;
     flex-wrap:wrap;
-    border-bottom:1px solid rgba(0,0,0,.08);
+    border-bottom:1px solid rgba(255,255,255,.10);
   }
   .reviewsTop h3{margin:0}
-  .reviewsTop .noteSmall{color:var(--muted);font-weight:750}
+  .reviewsTop .noteSmall{color:var(--muted);font-weight:780}
+
   .reviewMarquee{
     display:flex;
     gap:12px;
     padding:16px;
     overflow:hidden;
-    background:linear-gradient(180deg, #fff, var(--pink3));
+    background:linear-gradient(180deg, rgba(255,143,198,.10), rgba(255,255,255,.02));
   }
   .reviewTrack{
     display:flex;
@@ -320,23 +340,23 @@
   .review{
     width:320px;
     border-radius:18px;
-    border:1px solid rgba(0,0,0,.10);
-    background:#fff;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(0,0,0,.20);
     padding:14px;
     flex:0 0 auto;
   }
   .review b{display:block}
   .stars{letter-spacing:2px;color:var(--pink);font-weight:950}
-  .review p{margin:10px 0 0;color:var(--muted);font-weight:720}
+  .review p{margin:10px 0 0;color:rgba(255,255,255,.78);font-weight:730}
 
   /* Booking */
   .bookingShell{
-    background:#121212;
-    color:#f3f3f3;
+    background:linear-gradient(180deg, rgba(255,143,198,.10), rgba(255,255,255,.02));
+    color:#fff;
     border-radius:26px;
     padding:18px;
     box-shadow:var(--shadow);
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.10);
   }
   .bookingGrid{
     display:grid;
@@ -345,20 +365,22 @@
     margin-top:12px;
   }
   @media (max-width: 980px){ .bookingGrid{grid-template-columns:1fr} }
+
   .panel{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.10);
+    background:rgba(0,0,0,.22);
+    border:1px solid rgba(255,255,255,.12);
     border-radius:22px;
     padding:14px;
   }
   .panel h3{margin:0 0 12px}
-  .small{color:rgba(255,255,255,.78);font-weight:750;font-size:.95rem}
+  .small{color:rgba(255,255,255,.78);font-weight:780;font-size:.95rem}
+
   .calendar{
     display:grid;
     grid-template-columns: repeat(7, 1fr);
     gap:8px;
   }
-  .dow{opacity:.7;font-weight:950;font-size:.82rem;text-align:center}
+  .dow{opacity:.75;font-weight:950;font-size:.82rem;text-align:center}
   .day{
     background:rgba(255,255,255,.05);
     border:1px solid rgba(255,255,255,.10);
@@ -368,9 +390,11 @@
     cursor:pointer;
     user-select:none;
     font-weight:950;
+    color:rgba(255,255,255,.92);
   }
   .day.muted{opacity:.35;cursor:not-allowed}
-  .day.sel{background:var(--pink);color:#fff;border-color:var(--pink)}
+  .day.sel{background:var(--pink);color:#110812;border-color:var(--pink)}
+
   .times{
     margin-top:12px;
     display:grid;
@@ -386,8 +410,9 @@
     background:rgba(255,255,255,.06);
     cursor:pointer;
     font-weight:950;
+    color:rgba(255,255,255,.92);
   }
-  .timeBtn.sel{background:var(--pink);color:#fff;border-color:var(--pink)}
+  .timeBtn.sel{background:var(--pink);color:#110812;border-color:var(--pink)}
   .timeBtn.blocked{opacity:.35;cursor:not-allowed}
 
   .formRow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -397,13 +422,15 @@
     width:100%;
     padding:12px 12px;
     border-radius:14px;
-    border:1px solid rgba(255,255,255,.16);
-    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    background:rgba(0,0,0,.28);
     color:#fff;
     outline:none;
-    font-weight:800;
+    font-weight:820;
   }
+  input::placeholder, textarea::placeholder{color:rgba(255,255,255,.55)}
   textarea{min-height:96px;resize:vertical}
+
   .submit{
     width:100%;
     margin-top:10px;
@@ -411,30 +438,24 @@
     border-radius:999px;
     border:1px solid var(--pink);
     background:var(--pink);
-    color:#fff;
+    color:#110812;
     font-weight:950;
     cursor:pointer;
   }
   .note{
     margin-top:10px;
-    color:rgba(255,255,255,.78);
-    font-weight:750;
+    color:rgba(255,255,255,.82);
+    font-weight:780;
     font-size:.92rem;
   }
-
-  .flag{
-    margin-top:10px;
+  .note.important{
     padding:10px 12px;
     border-radius:16px;
-    border:1px solid rgba(255,255,255,.14);
-    background:rgba(0,0,0,.18);
-    font-weight:850;
+    border:1px solid rgba(255,143,198,.30);
+    background:rgba(255,143,198,.10);
   }
-  .flag.good{border-color:rgba(22,122,64,.65)}
-  .flag.bad{border-color:rgba(181,27,27,.75)}
-  .flag b{display:block;margin-bottom:4px}
 
-  /* Admin */
+  /* Admin (hidden unless ?admin=1) */
   .adminBar{display:none;margin-top:14px}
   .adminBar.show{display:block}
   .adminGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -444,11 +465,12 @@
     border:1px solid rgba(255,255,255,.12);
     padding:12px;
     min-height:120px;
+    background:rgba(0,0,0,.22);
   }
   .item{
     padding:10px;
     border-radius:14px;
-    background:rgba(0,0,0,.18);
+    background:rgba(255,255,255,.05);
     border:1px solid rgba(255,255,255,.10);
     margin-bottom:10px;
   }
@@ -458,12 +480,12 @@
     padding:9px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.16);
     background:rgba(255,255,255,.06);color:#fff;font-weight:950;cursor:pointer;
   }
-  .aBtn.ok{background:var(--pink);color:#fff;border-color:var(--pink)}
+  .aBtn.ok{background:var(--pink);color:#110812;border-color:var(--pink)}
   .aBtn.no{border-color:rgba(255,255,255,.28)}
 
   footer{
     padding:34px 0 56px;
-    color:rgba(0,0,0,.55);
+    color:rgba(255,255,255,.60);
     font-weight:900;
     text-align:center;
   }
@@ -477,7 +499,7 @@
     <nav class="nav">
       <span class="pill pink">Chubbuck • By appointment</span>
       <a href="#services">Services</a>
-      <a href="#why">Why book</a>
+      <a href="#work">Work</a>
       <a href="#reviews">Reviews</a>
       <a href="#book" class="btn small">Book</a>
     </nav>
@@ -486,22 +508,22 @@
 
 <main class="wrap">
 
-  <section class="hero">
+  <section class="hero" id="top">
     <div class="heroGrid">
       <div class="heroLeft">
         <div class="kicker">Clean work • calm experience • real results</div>
         <h1>Look expensive. Feel confident.</h1>
         <div class="sub">
-          Professional cosmetology services with clear pricing, clean finishes, and a booking flow that doesn’t waste your time.
+          Professional cosmetology services with clear pricing and a booking flow that feels simple.
         </div>
         <div class="heroCtas">
           <a href="#book" class="btn">Book now</a>
           <a href="#services" class="btn ghost">View services</a>
         </div>
         <div class="heroCtas" style="margin-top:14px">
-          <span class="pill pink">No double-booking</span>
-          <span class="pill pink">Straightforward pricing</span>
-          <span class="pill pink">Safety screening built-in</span>
+          <span class="pill pink">No overlap</span>
+          <span class="pill pink">Straightforward</span>
+          <span class="pill pink">Safety-first</span>
         </div>
       </div>
 
@@ -523,10 +545,7 @@
         </a>
 
         <div class="hr"></div>
-        <p><b>How booking works:</b> pick a service → choose a time → request booking. Owner approves/declines and overlaps are blocked (demo logic).</p>
-        <p style="font-size:.95rem;color:#6b6b6b;font-weight:780">
-          Owner mode (for you): add <b>?admin=1</b> to the site URL.
-        </p>
+        <p><b>Booking:</b> choose a service → choose a time → request. You’ll get confirmed after approval.</p>
         <a href="#book" class="btn">Schedule me</a>
       </div>
     </div>
@@ -536,22 +555,22 @@
   <section id="services">
     <div class="sectionHead">
       <h2>Top services</h2>
-      <p>Tap a service card to pre-fill booking. (These 12 are pulled from your price list.)</p>
+      <p>Tap a card to pre-fill booking. Photos are placeholders that match the service type (swap for client work later).</p>
     </div>
     <div class="cards" id="cards"></div>
   </section>
 
-  <!-- WHY CLIENTS BOOK (SLIDER) -->
-  <section id="why">
+  <!-- RECENT WORK SLIDER -->
+  <section id="work">
     <div class="sectionHead">
-      <h2>Why clients book here</h2>
-      <p>Simple: clean outcomes, clear expectations, and a calm process — with photos that prove it.</p>
+      <h2>Recent work</h2>
+      <p>Slides left-to-right. Hover/touch to pause.</p>
     </div>
 
     <div class="sliderShell">
       <div class="sliderTop">
-        <h3>Recent work (replace these with your photos)</h3>
-        <span>Hover/touch to pause • slides left-to-right</span>
+        <h3>Gallery</h3>
+        <span>Replace with Sierra’s photos later</span>
       </div>
 
       <div class="marquee">
@@ -565,7 +584,7 @@
   <section id="reviews">
     <div class="sectionHead">
       <h2>Reviews</h2>
-      <p>These are placeholders so the design feels like Google-style social proof. Replace with real reviews before going live.</p>
+      <p>Placeholders for layout only. Replace with real reviews before publishing.</p>
     </div>
 
     <div class="reviews">
@@ -586,11 +605,11 @@
     <div class="bookingShell">
       <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-end">
         <div>
-          <div class="kicker" style="opacity:.85">Book</div>
+          <div class="kicker" style="opacity:.90">Book</div>
           <h2 style="margin:10px 0 0;font-size:2.1rem">Request an appointment</h2>
-          <div class="small" style="margin-top:8px">Demo booking (stores requests in this browser). Real confirmations require a booking system or backend.</div>
+          <div class="small" style="margin-top:8px">This is a static demo. Real confirmations across devices require a booking tool or backend.</div>
         </div>
-        <button class="btn small ghost" id="clearDemo" style="border-color:rgba(255,255,255,.45);color:#fff">Clear demo bookings</button>
+        <button class="btn small ghost" id="clearDemo" style="border-color:rgba(255,255,255,.30);color:#fff">Clear demo</button>
       </div>
 
       <div class="bookingGrid">
@@ -599,9 +618,9 @@
           <div class="calendar" id="calendar"></div>
 
           <div style="display:flex;justify-content:space-between;gap:10px;margin-top:14px;flex-wrap:wrap">
-            <button class="btn small ghost" id="prevMonth" style="border-color:rgba(255,255,255,.45);color:#fff">Prev</button>
+            <button class="btn small ghost" id="prevMonth" style="border-color:rgba(255,255,255,.30);color:#fff">Prev</button>
             <div class="small" id="monthLabel" style="font-weight:950"></div>
-            <button class="btn small ghost" id="nextMonth" style="border-color:rgba(255,255,255,.45);color:#fff">Next</button>
+            <button class="btn small ghost" id="nextMonth" style="border-color:rgba(255,255,255,.30);color:#fff">Next</button>
           </div>
 
           <div style="margin-top:18px">
@@ -610,16 +629,17 @@
             <div class="note" id="slotNote">Select a date to see available times.</div>
           </div>
 
+          <!-- Admin controls are hidden unless ?admin=1 -->
           <div class="adminBar" id="adminBar">
-            <div class="flag good"><b>Owner mode enabled</b><div>Approve/decline requests below. Approved bookings block overlaps.</div></div>
+            <div class="note important"><b style="color:var(--pink2)">Private approval view</b><div style="margin-top:6px">Approve/decline requests below. Approved slots block overlaps.</div></div>
 
             <div class="adminGrid" style="margin-top:12px">
               <div class="list">
-                <b>Pending requests</b>
+                <b>Pending</b>
                 <div id="pendingList" style="margin-top:10px"></div>
               </div>
               <div class="list">
-                <b>Approved bookings</b>
+                <b>Approved</b>
                 <div id="approvedList" style="margin-top:10px"></div>
               </div>
             </div>
@@ -627,7 +647,7 @@
         </div>
 
         <div class="panel">
-          <h3>3) Details + screening</h3>
+          <h3>3) Details</h3>
 
           <div class="small" style="margin-bottom:10px">
             Selected: <b id="selService">None</b> • Date: <b id="selDate">—</b> • Time: <b id="selTime">—</b>
@@ -650,10 +670,10 @@
           <div id="screening"></div>
 
           <button class="submit" id="submit">Request booking</button>
-          <div class="note" id="confirm"></div>
+          <div class="note important" id="confirm" style="display:none"></div>
 
           <div class="note" style="margin-top:12px">
-            Safety note: some services (waxing/peels) require screening. If flagged, the booking can be declined and switched to an alternative (e.g., tweezing/threading) or rescheduled.
+            Some services require safety screening (e.g., waxing/peels). If flagged, you may be offered an alternative or reschedule.
           </div>
         </div>
       </div>
@@ -664,11 +684,26 @@
 </main>
 
 <script>
-  // Owner mode: add ?admin=1 to URL
+  // Smooth scroll helper for iOS + sticky header offset
+  const header = document.querySelector('.topbar');
+  const headerH = () => header ? header.offsetHeight : 0;
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      const id = a.getAttribute('href');
+      if(!id || id === '#') return;
+      const el = document.querySelector(id);
+      if(!el) return;
+      e.preventDefault();
+      const y = el.getBoundingClientRect().top + window.pageYOffset - headerH() - 10;
+      window.scrollTo({ top:y, behavior:'smooth' });
+    });
+  });
+
+  // Owner approval view hidden unless ?admin=1 (not mentioned in the public UI)
   const ADMIN = new URLSearchParams(location.search).get("admin") === "1";
 
-  // Demo storage (browser-only)
-  const STORE_KEY = "hair_by_sierra_bookings_v1";
+  // Demo storage
+  const STORE_KEY = "hair_by_sierra_bookings_blackpink_v1";
   function loadStore(){
     try{
       const raw = localStorage.getItem(STORE_KEY);
@@ -680,105 +715,106 @@
   function saveStore(data){ localStorage.setItem(STORE_KEY, JSON.stringify(data)); }
   function clearStore(){ localStorage.removeItem(STORE_KEY); }
 
-  // 12 top services (price-matched from your screenshot)
-  // NOTE: durations are reasonable defaults; edit as needed.
+  // Services (12 “top” from screenshot + screened items available in dropdown)
+  // Photos are chosen to actually match the category (hair salon / nails / facial / lashes).
   const SERVICES = [
     { id:"haircut_blow", name:"Hair cut with blow style", price:"$16", duration:60, cat:"Hair",
-      desc:"Clean cut + finished blow style so you leave done.",
-      img:"https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=1800&q=80",
+      desc:"Cut + finished blowout so you leave done.",
+      img:"https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=2000&q=80",
       tags:["hair","cut"] },
 
     { id:"haircut", name:"Hair cut", price:"$8", duration:45, cat:"Hair",
       desc:"Precision cut that grows out clean.",
-      img:"https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=1800&q=80",
+      img:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=2000&q=80",
       tags:["hair","cut"] },
 
     { id:"highlights", name:"Highlights (first bowl)", price:"$50", duration:120, cat:"Hair",
-      desc:"Brightness with placement that looks expensive in sunlight.",
-      img:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1800&q=80",
+      desc:"Brightening with placement that looks expensive.",
+      img:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=2000&q=80",
       tags:["hair","color"] },
 
     { id:"foil_color", name:"Foil & color", price:"$65", duration:135, cat:"Hair",
-      desc:"Dimension + tone for a fuller, richer look.",
-      img:"https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=1800&q=80",
+      desc:"Dimension + tone for a richer look.",
+      img:"https://images.unsplash.com/photo-1595872018818-97555653a011?auto=format&fit=crop&w=2000&q=80",
       tags:["hair","color"] },
 
     { id:"balayage", name:"Balayage (one bowl)", price:"$50", duration:150, cat:"Hair",
       desc:"Soft, blended brightness with a natural grow-out.",
-      img:"https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1800&q=80",
+      img:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80",
       tags:["hair","color"] },
 
     { id:"perm", name:"Perm traditional wrap", price:"$40", duration:120, cat:"Hair",
-      desc:"Shape and texture with a clean set and finish.",
-      img:"https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1800&q=80",
+      desc:"Texture and shape with a clean set and finish.",
+      img:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=2000&q=80",
       tags:["hair","perm"] },
 
     { id:"scalp", name:"Scalp treatment", price:"$25", duration:45, cat:"Hair",
-      desc:"Reset + refresh (great for buildup and dryness).",
-      img:"https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=1800&q=80",
+      desc:"Reset + refresh for buildup and dryness.",
+      img:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=2000&q=80",
       tags:["hair","scalp"] },
 
     { id:"upstyle", name:"Upstyle", price:"$25", duration:60, cat:"Hair",
       desc:"Polished styling for events and photos.",
-      img:"https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1800&q=80",
+      img:"https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=2000&q=80",
       tags:["hair","styling"] },
 
     { id:"gel_mani", name:"Gel polish manicure", price:"$18", duration:45, cat:"Nails",
-      desc:"Clean, glossy finish with better wear.",
-      img:"https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1800&q=80",
+      desc:"Glossy finish with better wear.",
+      img:"https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=2000&q=80",
       tags:["nails","gel"] },
 
     { id:"acrylic", name:"Full acrylic set", price:"$35", duration:75, cat:"Nails",
       desc:"Structured set with a crisp shape.",
-      img:"https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1800&q=80",
+      img:"https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=2000&q=80",
       tags:["nails","acrylic"] },
 
     { id:"lash_lift", name:"Lash Lift", price:"$35", duration:60, cat:"Brow & Lash",
-      desc:"Lifted lashes that open the eyes without heavy extensions.",
-      img:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1800&q=80",
+      desc:"Lifted lashes that open the eyes.",
+      img:"https://images.unsplash.com/photo-1522337459926-32e9b39a4f9f?auto=format&fit=crop&w=2000&q=80",
       tags:["lashes"] },
 
     { id:"facial60", name:"60 Minute Facial", price:"$40", duration:60, cat:"Facials",
-      desc:"Full reset: cleanse, treatment, and finish.",
-      img:"https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1800&q=80",
+      desc:"Full reset: cleanse, treatment, finish.",
+      img:"https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=2000&q=80",
       tags:["facials"] },
 
-    // Extra (not in top 12 cards, but available in dropdown + screening)
-    { id:"brow_wax", name:"Brow Wax", price:"$10", duration:20, cat:"Brow & Lash", desc:"Shaping (screening required).",
-      img:"https://images.unsplash.com/photo-1522337459926-32e9b39a4f9f?auto=format&fit=crop&w=1800&q=80",
+    /* Screened services (not in top 12 cards, but in dropdown) */
+    { id:"brow_wax", name:"Brow Wax", price:"$10", duration:20, cat:"Brow & Lash",
+      desc:"Shaping (screening required).",
+      img:"https://images.unsplash.com/photo-1522337459926-32e9b39a4f9f?auto=format&fit=crop&w=2000&q=80",
       tags:["wax","brows"], screening:"wax" },
 
-    { id:"chemical_peel", name:"Chemical Peel", price:"$65", duration:60, cat:"Facials", desc:"Resurfacing (screening required).",
-      img:"https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&w=1800&q=80",
+    { id:"chemical_peel", name:"Chemical Peel", price:"$65", duration:60, cat:"Facials",
+      desc:"Resurfacing (screening required).",
+      img:"https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&w=2000&q=80",
       tags:["peel"], screening:"peel" }
   ];
 
-  // Screening rules (simple and conservative)
   const SCREENING = {
     wax: {
-      title: "Waxing safety screening",
-      note: "If any apply, your request will be flagged for an alternative (tweezing/threading) or reschedule.",
+      title: "Waxing screening",
+      note: "If any apply, your request will be flagged for an alternative or reschedule.",
       questions: [
-        { key:"accutane", label:"Currently on isotretinoin/Accutane OR used it recently", tag:"accutane", hardStop:true },
-        { key:"retinoids", label:"Using topical retinoids on the area (tretinoin/Retin-A/adapalene)", tag:"retinoids", hardStop:true },
-        { key:"recent_proc", label:"Recent peel/laser/microderm on the area", tag:"recent-procedure", hardStop:true },
-        { key:"irritation", label:"Sunburned/irritated/inflamed skin on the area", tag:"irritated-skin", hardStop:true }
+        { key:"accutane", label:"Currently on isotretinoin/Accutane OR used it recently", tag:"accutane" },
+        { key:"retinoids", label:"Using topical retinoids on the area (tretinoin/Retin-A/adapalene)", tag:"retinoids" },
+        { key:"recent_proc", label:"Recent peel/laser/microderm on the area", tag:"recent-procedure" },
+        { key:"irritation", label:"Sunburned/irritated/inflamed skin on the area", tag:"irritated-skin" }
       ],
-      alternatives: "Alternative: tweezing/threading, or reschedule when safe."
+      alternatives: "Alternative: tweezing/threading or reschedule."
     },
     peel: {
-      title: "Chemical peel screening",
+      title: "Peel screening",
       note: "If any apply, your request will be flagged and may be switched to a gentler facial or postponed.",
       questions: [
-        { key:"accutane", label:"Currently on isotretinoin/Accutane OR used it recently", tag:"accutane", hardStop:true },
-        { key:"irritation", label:"Active irritation/open lesions/sunburn on treatment area", tag:"irritated-skin", hardStop:true },
-        { key:"recent_proc", label:"Recent strong exfoliation/laser/microderm", tag:"recent-procedure", hardStop:true }
+        { key:"accutane", label:"Currently on isotretinoin/Accutane OR used it recently", tag:"accutane" },
+        { key:"irritation", label:"Active irritation/open lesions/sunburn on the area", tag:"irritated-skin" },
+        { key:"recent_proc", label:"Recent strong exfoliation/laser/microderm", tag:"recent-procedure" }
       ],
-      alternatives: "Alternative: gentle facial, or postpone until safe."
+      alternatives: "Alternative: gentle facial or postpone."
     }
   };
 
-  // Build top services cards (exactly 12)
+  // Build top service cards (first 12)
   const cardsEl = document.getElementById("cards");
   const top12 = SERVICES.filter(s => ["brow_wax","chemical_peel"].indexOf(s.id) === -1).slice(0,12);
 
@@ -803,14 +839,14 @@
     cardsEl.appendChild(el);
   });
 
-  // Work slider images (placeholders) — replace with your own later
+  // Work slider (better matching placeholders)
   const WORK_IMAGES = [
-    { label:"Color", url:"https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=1200&q=80" },
-    { label:"Highlights", url:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80" },
-    { label:"Extensions", url:"https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=1200&q=80" },
-    { label:"Lashes", url:"https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1200&q=80" },
-    { label:"Facials", url:"https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=80" },
-    { label:"Nails", url:"https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1200&q=80" }
+    { label:"Color", url:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1400&q=80" },
+    { label:"Highlights", url:"https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1400&q=80" },
+    { label:"Nails", url:"https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1400&q=80" },
+    { label:"Facials", url:"https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&w=1400&q=80" },
+    { label:"Lashes", url:"https://images.unsplash.com/photo-1522337459926-32e9b39a4f9f?auto=format&fit=crop&w=1400&q=80" },
+    { label:"Styling", url:"https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1400&q=80" }
   ];
   function fillWorkTrack(trackId){
     const t = document.getElementById(trackId);
@@ -825,13 +861,13 @@
   fillWorkTrack("workTrack");
   fillWorkTrack("workTrackClone");
 
-  // Reviews (PLACEHOLDERS) — replace with real reviews before publishing
+  // Reviews placeholders
   const REVIEWS = [
-    { stars:5, name:"Alyssa M.", text:"The color came out exactly how I wanted. Super clean work and the appointment felt calm, not rushed." },
-    { stars:5, name:"Jordan K.", text:"My hair cut grew out perfectly. I didn’t have to fight it after washing — it just sat right." },
-    { stars:5, name:"Megan S.", text:"Lash lift looks natural but noticeable. The vibe was professional and the result was worth it." },
-    { stars:5, name:"Bri T.", text:"Nails were crisp and lasted. Booking was easy and I knew what to expect before I showed up." },
-    { stars:5, name:"Hailey P.", text:"Facial was relaxing and my skin looked better immediately. Great communication on what was being used." }
+    { stars:5, name:"Alyssa M.", text:"Color came out exactly how I wanted. Clean work, calm vibe, and I felt taken care of." },
+    { stars:5, name:"Jordan K.", text:"Haircut grew out perfectly. No awkward phase, it just sat right." },
+    { stars:5, name:"Megan S.", text:"Lash lift looks natural but noticeable. Super professional and easy to book." },
+    { stars:5, name:"Bri T.", text:"Nails were crisp and lasted. Communication was clear and the appointment ran on time." },
+    { stars:5, name:"Hailey P.", text:"Facial was relaxing and my skin looked better immediately. I left glowing." }
   ];
   function stars(n){ return "★★★★★".slice(0,n) + "☆☆☆☆☆".slice(0,5-n); }
   function fillReviews(trackId){
@@ -851,7 +887,7 @@
   fillReviews("reviewTrack");
   fillReviews("reviewTrackClone");
 
-  // Booking calendar + time slots
+  // Booking calendar + slots
   let viewDate = new Date();
   let selectedDay = null;     // YYYY-MM-DD
   let selectedTime = null;    // HH:MM
@@ -917,7 +953,7 @@
           selectedTime = null;
           document.getElementById("selDate").textContent = key;
           document.getElementById("selTime").textContent = "—";
-          document.getElementById("confirm").textContent = "";
+          hideConfirm();
           renderCalendar();
           renderTimes();
         });
@@ -945,7 +981,7 @@
         b.addEventListener("click", ()=>{
           selectedTime = t;
           document.getElementById("selTime").textContent = t;
-          document.getElementById("confirm").textContent = "";
+          hideConfirm();
           renderTimes();
         });
       }
@@ -962,7 +998,7 @@
     renderCalendar();
   });
 
-  // Service select (includes wax/peel too)
+  // Service select
   const serviceSelect = document.getElementById("serviceSelect");
   function fillServiceSelect(){
     serviceSelect.innerHTML = "";
@@ -979,7 +1015,7 @@
     return SERVICES.find(s => s.id === id) || SERVICES[0];
   }
 
-  function selectService(id, scroll){
+  function selectService(id, scrollToBook){
     selectedServiceId = id;
     const s = getService(id);
     document.getElementById("selService").textContent = `${s.name} (${s.price})`;
@@ -991,9 +1027,10 @@
 
     serviceSelect.value = id;
     renderScreening();
-
-    if(scroll){
-      document.getElementById("book").scrollIntoView({behavior:"smooth"});
+    if(scrollToBook){
+      const el = document.querySelector("#book");
+      const y = el.getBoundingClientRect().top + window.pageYOffset - headerH() - 10;
+      window.scrollTo({ top:y, behavior:'smooth' });
     }
   }
 
@@ -1010,15 +1047,15 @@
 
     if(!rule){
       const ok = document.createElement("div");
-      ok.className = "flag good";
-      ok.innerHTML = `<b>Screening: Clear</b><div>No special screening required for this service.</div>`;
+      ok.className = "note important";
+      ok.innerHTML = `<b style="color:var(--pink2)">Screening</b><div style="margin-top:6px">No special screening required for this service.</div>`;
       screeningEl.appendChild(ok);
       return;
     }
 
     const box = document.createElement("div");
-    box.className = "flag bad";
-    box.innerHTML = `<b>${rule.title}</b><div style="opacity:.9">${rule.note}</div>`;
+    box.className = "note important";
+    box.innerHTML = `<b style="color:var(--pink2)">${rule.title}</b><div style="margin-top:6px">${rule.note}</div>`;
     screeningEl.appendChild(box);
 
     rule.questions.forEach(q=>{
@@ -1026,7 +1063,7 @@
       const wrap = document.createElement("div");
       wrap.style.marginTop = "10px";
       wrap.innerHTML = `
-        <label style="display:flex;gap:10px;align-items:flex-start;font-weight:800;color:rgba(255,255,255,.92)">
+        <label style="display:flex;gap:10px;align-items:flex-start;font-weight:850;color:rgba(255,255,255,.90)">
           <input type="checkbox" id="${id}" style="margin-top:4px;transform:scale(1.05)" />
           <span>${q.label}</span>
         </label>
@@ -1038,7 +1075,7 @@
     const info = document.createElement("div");
     info.className = "note";
     info.id = "screenStatus";
-    info.textContent = "If anything applies, your request will be flagged for owner review.";
+    info.textContent = "If anything applies, your request will be flagged for review.";
     screeningEl.appendChild(info);
 
     updateScreeningStatus();
@@ -1061,21 +1098,31 @@
       status.style.color = "rgba(255,255,255,.78)";
     }else{
       status.textContent = `Flagged: ${hits.join(", ")}. ${rule.alternatives}`;
-      status.style.color = "rgba(255,170,170,.95)";
+      status.style.color = "rgba(255,180,200,.95)";
     }
+  }
+
+  // Confirm box helpers (avoid invisible text)
+  const confirmEl = document.getElementById("confirm");
+  function showConfirm(msg){
+    confirmEl.textContent = msg;
+    confirmEl.style.display = "block";
+  }
+  function hideConfirm(){
+    confirmEl.textContent = "";
+    confirmEl.style.display = "none";
   }
 
   // Submit booking (demo)
   document.getElementById("submit").addEventListener("click", ()=>{
-    const confirmEl = document.getElementById("confirm");
     const s = getService(selectedServiceId);
 
     if(!selectedDay || !selectedTime){
-      confirmEl.textContent = "Select a date and time first.";
+      showConfirm("Select a date and time first.");
       return;
     }
     if(slotBlocked(selectedDay, selectedTime)){
-      confirmEl.textContent = "That time is already booked. Pick another slot.";
+      showConfirm("That time is already booked. Pick another slot.");
       return;
     }
 
@@ -1085,7 +1132,7 @@
     const notes = document.getElementById("notes").value.trim();
 
     if(!name || !phone){
-      confirmEl.textContent = "Enter your name and phone number to request the booking.";
+      showConfirm("Enter your name and phone number to request the booking.");
       return;
     }
 
@@ -1116,15 +1163,16 @@
     store.pending.unshift(req);
     saveStore(store);
 
-    confirmEl.textContent =
+    showConfirm(
       req.flagged
-        ? "Requested (FLAGGED for owner review). You may be offered an alternative or a reschedule."
-        : "Requested. You’ll be confirmed after approval (demo).";
+        ? "Requested (flagged for review). You may be offered an alternative or a reschedule."
+        : "Requested. You’ll be confirmed after approval."
+    );
 
     renderAdminLists();
   });
 
-  // Admin
+  // Admin UI (hidden unless ADMIN)
   const adminBar = document.getElementById("adminBar");
   if(ADMIN) adminBar.classList.add("show");
 
@@ -1138,7 +1186,7 @@
     approvedList.innerHTML = "";
 
     if(store.pending.length === 0){
-      pendingList.innerHTML = `<div class="small">No pending requests yet.</div>`;
+      pendingList.innerHTML = `<div class="small">No pending requests.</div>`;
     }else{
       store.pending.forEach(req=>{
         const item = document.createElement("div");
@@ -1147,7 +1195,7 @@
         item.innerHTML = `
           <b>${req.day} • ${req.time} — ${req.serviceName} (${req.price})</b>
           <div class="small">${req.name} • ${req.phone}${req.email ? " • " + req.email : ""}</div>
-          <div class="small">Tags: <b>${tagText}</b>${req.flagged ? " • <b style='color:#ffb0b0'>FLAGGED</b>" : ""}</div>
+          <div class="small">Tags: <b>${tagText}</b>${req.flagged ? " • <b style='color:rgba(255,180,200,.95)'>FLAGGED</b>" : ""}</div>
           ${req.notes ? `<div class="small" style="margin-top:6px;opacity:.9">Notes: ${escapeHtml(req.notes)}</div>` : ""}
           <div class="actions">
             <button class="aBtn ok">Accept</button>
@@ -1162,7 +1210,7 @@
     }
 
     if(store.approved.length === 0){
-      approvedList.innerHTML = `<div class="small">No approved bookings yet.</div>`;
+      approvedList.innerHTML = `<div class="small">No approved bookings.</div>`;
     }else{
       store.approved.forEach(req=>{
         const item = document.createElement("div");
@@ -1171,7 +1219,7 @@
           <b>${req.day} • ${req.time} — ${req.serviceName} (${req.price})</b>
           <div class="small">${req.name} • ${req.phone}</div>
           <div class="actions">
-            <button class="aBtn no">Cancel booking</button>
+            <button class="aBtn no">Cancel</button>
           </div>
         `;
         item.querySelector("button").addEventListener("click", ()=> cancelApproved(req.id));
@@ -1214,7 +1262,7 @@
 
   document.getElementById("clearDemo").addEventListener("click", ()=>{
     clearStore();
-    document.getElementById("confirm").textContent = "Demo bookings cleared.";
+    showConfirm("Demo bookings cleared.");
     renderAdminLists();
     renderTimes();
   });
@@ -1229,6 +1277,7 @@
   document.getElementById("selTime").textContent = "—";
   selectService(top12[0].id, false);
   renderCalendar();
+  hideConfirm();
 </script>
 
 </body>
